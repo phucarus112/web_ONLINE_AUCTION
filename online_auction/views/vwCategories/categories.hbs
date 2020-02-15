@@ -1,0 +1,64 @@
+
+    <!-- Header End -->
+    <section class="blog-section spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-md-6 col-sm-8 order-2 order-lg-1">
+                    <div class="blog-sidebar">
+                        
+               
+                        
+                        <div class="recent-post">
+                            <h4>Recent Products</h4>
+                            <div class="recent-blog">
+                                {{#each this.recently}}
+                                <a href="/admin/home/{{ID}}" class="rb-item">
+                                    <div class="rb-pic">
+                                        <img src="/imgs/sp/{{ID}}/main_thumb.jpg" alt="">
+                                    </div>
+                                    <div class="rb-text">
+                                       <h6>{{NAME}}</h6>
+                                        <p>Giá hiện tại: <span>{{format PRICE}}</span></p>
+                                    </div>
+                                </a>
+                                {{/each}}
+                            </div>
+                        </div>
+                       
+                    </div>
+                </div>
+                <div class="col-lg-9 order-1 order-lg-2">
+                    <div class="row">
+                        {{#if this.empty}}
+			                <div class="card-body">
+				            <p class="card-text">
+					            Không có dữ liệu
+				            </p>
+			                </div>
+			            {{else}}
+    			        {{#each this.categories}}
+                        <div class="col-lg-6 col-sm-6">
+                        
+                            <div class="blog-item">
+                                <div class="bi-pic">
+                                    <img src="/imgs/sp/{{ID}}/main_thumb.jpg" alt="">
+                                </div>
+                                <div class="bi-text">
+                                    <a href="/admin/home/{{ID}}">
+                                        <h4>{{NAME}}</h4>
+                                    </a>
+                                    <p>Giá hiện tại: {{ format PRICE}}<span ></span></a></p>
+
+                                </div>
+                            
+                            </div>
+                        </div>
+                        	{{/each}}
+                        {{/if}}
+                       
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+ 

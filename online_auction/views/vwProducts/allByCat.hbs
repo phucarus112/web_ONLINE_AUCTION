@@ -1,0 +1,185 @@
+ {{#section 'css'}}
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.0.3/css/fileinput.min.css" media="all"
+    rel="stylesheet" type="text/css" />
+	<link rel="stylesheet" href="../../css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="../../css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="../../css/themify-icons.css" type="text/css">
+    <link rel="stylesheet" href="../../css/elegant-icons.css" type="text/css">
+    <link rel="stylesheet" href="../../css/owl.carousel.min.css" type="text/css">
+    <link rel="stylesheet" href="../../css/nice-select.css" type="text/css">
+    <link rel="stylesheet" href="../../css/jquery-ui.min.css" type="text/css">
+    <link rel="stylesheet" href="../../css/slicknav.min.css" type="text/css">
+    <link rel="stylesheet" href="../../css/style.css" type="text/css">
+{{/section}}
+{{#section 'js'}}
+	<script src="../../js/jquery-3.3.1.min.js"></script>
+    <script src="../../js/bootstrap.min.js"></script>
+    <script src="../../js/jquery-ui.min.js"></script>
+    <script src="../../js/jquery.countdown.min.js"></script>
+    <script src="../../js/jquery.nice-select.min.js"></script>
+    <script src="../../s/jquery.zoom.min.js"></script>
+    <script src="../../js/jquery.dd.min.js"></script>
+    <script src="../../js/jquery.slicknav.js"></script>
+    <script src="../../js/owl.carousel.min.js"></script>
+    <script src="../../js/main.js"></script>
+      <script>
+// Set the date we're counting down to
+        var temp = document.getElementById('temp');
+          
+        var countDownDate = new Date(temp.value).getTime();
+        var x = setInterval(function() {
+        var now = new Date().getTime();
+        var distance = countDownDate - now;
+        var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        document.getElementById(`demo`).innerHTML = days + " ngày: " + hours + " giờ: "
+        + minutes + " phút: " + seconds + " giây ";
+
+        if (distance < 0) {
+            clearInterval(x);
+           document.getElementById(`demo`).innerHTML = "EXPIRED";
+        }
+        
+    }, 1000);
+</script>
+{{/section}}
+ <!-- Product Shop Section Begin -->
+    <section class="product-shop spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 order-1 order-lg-2">
+                    <div class="product-show-option">
+                        <div class="row">
+                            <div class="col-lg-7 col-md-7">
+                                
+                            </div>
+                        </div>
+                    </div>
+                    <div class="product-list">
+                        <div class="row">
+                           {{#if isAuthenticated}}
+                                {{#if this.empty}}
+								<div class="card-body">
+				            <p class="card-text">
+					            Không có dữ liệu
+				            </p>
+			                </div>
+							{{else}}
+								{{#each this.products}}
+								 <div class="col-lg-4 col-sm-6">
+                                <div class="product-item">
+                                    <div class="pi-pic">
+                                        <img src="/imgs/sp/{{ID}}/main_thumb.jpg" alt="">
+
+                                       
+                                        <ul>
+                                            <li class="w-icon active"><a href="#"><i class="icon_bag_alt"></i></a></li>
+                                            <li class="quick-view"><a href="detail/{{ID}}">+ Quick View</a></li>
+                                            <li class="w-icon"><a href="#"><i class="fa fa-random"></i></a></li>
+                                        </ul>
+                                    </div>
+                                    <div class="product-price pi-text" style="background-color: wheat;">
+									
+                                        <a href="detail/{{ID}}">
+                                            <h4><b>{{NAME}}</b></h4>
+                                        </a>
+                                        <div class="pi-text">
+                                            
+                                            <h6>Giá hiện tại: {{format PRICE}}</h6>
+                                        </div>
+                                         <div >
+                                            
+                                           <h6>Người đang giữ giá: <i><b>{{BIDDER}}</b></i></h6> 
+                                        </div>
+                                         <div class="product-price">
+                                            
+                                            <h6>Số lượt ra giá: <i><b>{{TURN_AUCTION}}</b></i></h6>
+                                        </div>
+                                         <div >
+                                             <input type="text" class="form-control" id="temp" name="temp" 
+                                            value="{{formatCountDown DAYEND}}" style="display: none;" readonly>
+                                         
+                                           <h6 >Ngày hết hạn: {{formatDate DAYEND}}</h6>
+                                        <span class="product-price">{{DESCRIPTION}}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+								{{/each}}
+							{{/if}}
+                           {{else}}
+                                {{#if this.empty}}
+								<div class="card-body">
+				            <p class="card-text">
+					            Không có dữ liệu
+				            </p>
+			                </div>
+							{{else}}
+								{{#each this.products}}
+								 <div class="col-lg-4 col-sm-6">
+                                <div class="product-item">
+                                    <div class="pi-pic">
+                                        <img src="/imgs/sp/{{ID}}/main_thumb.jpg" alt="">
+                                       
+                                        <ul>
+                                            <li class="w-icon active"><a href="#"><i class="icon_bag_alt"></i></a></li>
+                                            <li class="quick-view"><a href="detail/{{ID}}">+ Quick View</a></li>
+                                            <li class="w-icon"><a href="#"><i class="fa fa-random"></i></a></li>
+                                        </ul>
+                                    </div>
+                                    <div class="product-price pi-text" style="background-color: wheat;">
+                                        <a href="detail/{{ID}}">
+                                            <h4><b>{{NAME}}</b></h4>
+                                        </a>
+                                        <div class="pi-text">
+
+                                            <h6 class="product-price ">Giá hiện tại: {{format PRICE}}</h6>
+                                        </div>
+                                         <div >
+                                            
+                                           <h6>Người đang giữ giá: <i><b>{{BIDDER}}</b></i></h6> 
+                                        </div>
+                                         <div class="product-price">
+                                            
+                                            <h6>Số lượt ra giá: <i><b>{{TURN_AUCTION}}</b></i></h6>
+                                        </div>
+                                         <div >
+                                            <input type="text" class="form-control" id="temp" name="temp" 
+                                            value="{{formatCountDown DAYEND}}" style="display: none;" readonly>
+                                           <input type="text" class="form-control" id="txtId" name="txtId" 
+                                            value="{{ID}}" style="display: none;" readonly>
+                                        <h6 >Ngày hết hạn: {{formatDate DAYEND}}</h6>
+                                        <span class="product-price">{{DESCRIPTION}}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+								{{/each}}
+							{{/if}}
+                           {{/if}}
+                        </div>
+                    </div>
+                  <div class="row mt-5">
+				<ul style="list-style-type: none; display: flex; margin: 0 auto"  >
+					
+							<li class="mr-2" ><a href="?page={{pre_value}}">&lt;</a></li>
+					{{#each this.page_numbers}}
+						{{#if isCurrentPage}}
+							<li class="active mr-2" ><a href="?page={{value}}" style="color: saddlebrown;">{{value}}</a></li>
+						{{else}}
+							<li class="mr-2"><a href="?page={{value}}">{{value}}</a></li>
+					{{/if}}
+					  {{/each}}
+					  <li class="mr-2"><a href="?page={{next_value}}">&gt;</a></li>
+				</ul>	
+	</div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Product Shop Section End -->
+
+ 

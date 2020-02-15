@@ -1,0 +1,142 @@
+
+  {{#section 'css'}}
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.0.3/css/fileinput.min.css" media="all"
+    rel="stylesheet" type="text/css" />
+	<link rel="stylesheet" href="../../css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="../../css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="../../css/themify-icons.css" type="text/css">
+    <link rel="stylesheet" href="../../css/elegant-icons.css" type="text/css">
+    <link rel="stylesheet" href="../../css/owl.carousel.min.css" type="text/css">
+    <link rel="stylesheet" href="../../css/nice-select.css" type="text/css">
+    <link rel="stylesheet" href="../../css/jquery-ui.min.css" type="text/css">
+    <link rel="stylesheet" href="../../css/slicknav.min.css" type="text/css">
+    <link rel="stylesheet" href="../../css/style.css" type="text/css">
+{{/section}}
+{{#section 'js'}}
+	<script src="../../js/jquery-3.3.1.min.js"></script>
+    <script src="../../js/bootstrap.min.js"></script>
+    <script src="../../js/jquery-ui.min.js"></script>
+    <script src="../../js/jquery.countdown.min.js"></script>
+    <script src="../../js/jquery.nice-select.min.js"></script>
+    <script src="../../js/jquery.zoom.min.js"></script>
+    <script src="../../js/jquery.dd.min.js"></script>
+    <script src="../../js/jquery.slicknav.js"></script>
+    <script src="../../js/owl.carousel.min.js"></script>
+    <script src="../../js/main.js"></script>
+   
+{{/section}}
+    <!-- Shopping Cart Section Begin -->
+    <section class="shopping-cart spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="cart-table">
+                        {{#if isSeller}}
+                            {{#if end}}
+
+                                 {{#if this.empty}}
+                                        <div class="card-body">
+				                            <p class="card-text">
+					                            Sản phẩm đã kết thúc đấu giá
+				                            </p>
+			                            </div>
+                                    {{else}}
+                                    <table>
+                            <thead>
+                                <tr>
+                                    <th>Username</th>
+                                    <th>Current Price</th>
+                                    <th>Date Auction</th>
+                                   
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {{#each this.hispro}}
+                                    <tr>
+                                    <td class="cart-title first-row ml-3">
+                                        <h5>{{USERNAME}}</h5>
+                                    </td>
+                                    <td class="first-row">{{format PRICE}}</td>
+                                   <td class="total-price first-row">{{formatDate DATE}}</td>
+                                    </tr>
+                            </tbody>
+                            {{/each}}
+                                    {{/if}}
+                        </table>
+                            {{else}}
+                                   {{#if this.empty}}
+                                        <div class="card-body">
+				                            <p class="card-text">
+					                            Chưa có ai đấu giá sản phẩm này
+				                            </p>
+			                            </div>
+                                    {{else}}
+                                    <table>
+                            <thead>
+                                <tr>
+                                    <th>Username</th>
+                                    <th>Current Price</th>
+                                    <th>Date Auction</th>
+                                    <th>REJECT</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {{#each this.hispro}}
+                                    <tr>
+                                    <td class="first-row">
+                                        <h5>{{USERNAME}}</h5>
+                                    </td>
+                                <td class="first-row">{{format PRICE}}</td>
+                                   <td class="total-price first-row">{{formatDate DATE}}</td>
+                                    <form action="" method="POST" id="{{PRICE}}">
+                                        <input type="text" class="form-control" id="txtId" name="txtId" style="display: none;"
+                                            value="{{PRICE}}" readonly>
+                                            </form>
+                                    <td class="close-td first-row"><a href="javascript: $('#{{PRICE}}').submit();"><span class="ti-close"></span></a></td>
+                                    
+                            </tbody>
+                            {{/each}}
+                                    {{/if}}
+                        </table>
+                            {{/if}}
+                          
+                        {{else}}
+                              {{#if this.empty}}
+                                        <div class="card-body">
+				                            <p class="card-text">
+					                            Chưa có ai đấu giá sản phẩm này
+				                            </p>
+			                            </div>
+                                    {{else}}
+                                    <table>
+                            <thead>
+                                <tr>
+                                    <th>Username</th>
+                                    <th>Current Price</th>
+                                    <th>Date Auction</th>
+                                   
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {{#each this.hispro}}
+                                    <tr>
+                                    <td class="cart-title first-row ml-3">
+                                        <h5>{{USERNAME}}</h5>
+                                    </td>
+                                    <td class="first-row">{{format PRICE}}</td>
+                                   <td class="total-price first-row">{{formatDate DATE}}</td>
+                                    </tr>
+                            </tbody>
+                            {{/each}}
+                                    {{/if}}
+                        </table>
+                        {{/if}}
+                                
+                                   
+                    </div>
+                
+                </div>
+            </div>
+        </div>
+    </section>
+ 

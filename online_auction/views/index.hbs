@@ -1,0 +1,307 @@
+{{#section 'js'}}
+       <script>
+// Set the date we're counting down to
+var temp = document.getElementById('temp');
+
+var countDownDate = new Date(temp.value).getTime();
+
+// Update the count down every 1 second
+var x = setInterval(function() {
+
+  // Get today's date and time
+  var now = new Date().getTime();
+
+  // Find the distance between now and the count down date
+  var distance = countDownDate - now;
+
+  // Time calculations for days, hours, minutes and seconds
+  var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+  var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+  var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+  // Display the result in the element with id="demo"
+
+     document.getElementById("demo").innerHTML = days + " d: " + hours + " h: "
+  + minutes + " m: " + seconds + " s ";
+  // If the count down is finished, write some text
+  if (distance < 0) {
+    clearInterval(x);
+      document.getElementById("demo").innerHTML = "EXPIRED";
+  }
+}, 1000);
+</script>
+{{/section}}
+<!-- Hero Section Begin -->
+    <section class="hero-section">
+        <div class="hero-items owl-carousel">
+           {{#if this.no_hotpro}}
+                <div class="single-hero-items set-bg" data-setbg="https://yea.edu.vn/wp-content/uploads/2016/01/tet-holiday-2016-slider.png">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-5">
+                            <span>Nơi mua bán thông qua việc đấu giá</span>
+                            <h1>Online Auction</h1>
+                            {{#if isAuthenticated}}
+                                <a href="/" class="primary-btn">Chào mừng đến với sàn đấu giá của chúng tôi</a>
+                            {{else}}
+                                <a href="/account/login" class="primary-btn">Tham gia ngay</a>
+                            {{/if}}
+                            
+                        </div>
+                    </div>
+                    <div class="off-card">
+                        <h2>CHẤT LƯỢNG</h2>
+                    </div>
+                </div>
+            </div>
+           {{else}}
+                {{#each this.hotpro}}
+                    <div class="single-hero-items set-bg" data-setbg="https://yea.edu.vn/wp-content/uploads/2016/01/tet-holiday-2016-slider.png">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-5">
+                            <h2 style="color:#fff"><b>{{NAME}}</b> </h2>
+                            <span>Giá hiện tại: {{format PRICE}}</span>
+                            <a href="/categories/detail/{{ID}}" class="primary-btn">Xem và đấu giá</a>
+                        </div>
+                        <div class="col-5">
+                            <img src="/imgs/sp/{{ID}}/main_thumb.jpg" alt="">
+                        </div>
+                    </div>
+                    <div class="off-card">
+                        <h2>HOT <span>HOT</span></h2>
+                    </div>
+                </div>
+            </div>
+                {{/each}}
+           {{/if}}
+            
+         
+        </div>
+    </section>
+    <!-- Hero Section End -->
+
+    <!-- Banner Section Begin -->
+    <div class="banner-section spad">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-4">
+                    <div class="single-banner">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT7wK4ZGneIGcCN-BHIhe0ainJ_RbGg5KBygnzjGRKX1bAcfWiH&s" alt="">
+                        <div class="inner-text">
+                            <h4>SELLER</h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="single-banner">
+                        <img src="https://s3-eu-west-1.amazonaws.com/jssolutions/Article_Photo/blog/post_headers/%D0%A1reate-online-auction-marketplace-300.jpg" alt="">
+                        <div class="inner-text">
+                            <h4>BIDDER</h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="single-banner">
+                        <img src="http://www.cosmopolitanlawyerlodgeintercontinental.ch/wp-content/uploads/2013/09/mcfadden-1140x762-1140x762.jpg" alt="">
+                        <div class="inner-text">
+                            <h4>ADMINSTRATOR</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Banner Section End -->
+     <section class="man-banner spad">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-8">
+                   
+                    <div class="product-slider owl-carousel">
+                        
+                                {{#if this.empty}}
+                        Không có sản phẩm
+                            {{else}}
+                            {{#each this.sortDate}}
+                        <div class="product-item">
+                            <div class="pi-pic">
+                                <img src="/imgs/sp/{{ID}}/main_thumb.jpg" alt="">
+                              
+                                <div class="icon">
+                                </div>
+                                <ul>
+                                    <li class="w-icon active"><a href="#"><i class="icon_bag_alt"></i></a></li>
+                                    <li class="quick-view"><a href="/categories/detail/{{ID}}">+ Quick View</a></li>
+                                    <li class="w-icon"><a href="#"><i class="fa fa-random"></i></a></li>
+                                </ul>
+                            </div>
+                            <div class="pi-text">
+                                <div class="catagory-name"></div>
+                                <a href="/categories/detail/{{ID}}">
+                                    <h5><b>{{NAME}}</b></h5>
+                                </a>
+                                 <div class="pi-text">
+                                            
+                                            <h6 class="product-price">Giá: {{format PRICE}}</h6>
+                                        </div>
+                                         <div >
+                                            
+                                           <h6>Người đang giữ giá: <i><b>{{BIDDER}}</b></i></h6> 
+                                        </div>
+                                         <div class="product-price">
+                                            
+                                            <h6>Số lượt ra giá: <i><b>{{TURN_AUCTION}}</b></i></h6>
+                                        </div>
+                                          <div class="product-price">
+                                            <input type="text" class="form-control" id="temp" name="temp" 
+                                            value="{{formatCountDown DAYEND}}" style="display: none;" readonly>
+                                            <h6>Ngày hết hạn: {{formatDate DAYEND}}</h6>
+                                            <h6 class="product-price">{{DESCRIPTION}}</h6>
+                                        </div>
+                            </div>
+                        </div>
+                        {{/each}}
+                        {{/if}}
+                    
+                    </div>
+                </div>
+                <div class="col-lg-3 offset-lg-1">
+                    <div class="product-large set-bg m-large" data-setbg="https://images.pexels.com/photos/610945/pexels-photo-610945.jpeg?cs=srgb&dl=black-wireless-headphones-on-white-table-610945.jpg&fm=jpg">
+                        <h2>#5</h2>
+                        <a href="#">Sản phẩm sắp kết thúc đấu giá</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Women Banner Section Begin -->
+    <section class="women-banner spad">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-3">
+                    <div class="product-large set-bg" data-setbg="https://pbs.twimg.com/media/Dch-SBCUQAAU1Nf.jpg">
+                        <h2>#5</h2>
+                        <a href="#">Giá cao nhất</a>
+                    </div>
+                </div>
+                <div class="col-lg-8 offset-lg-1">
+                    <div class="product-slider owl-carousel">
+                        
+                            {{#if this.empty}}
+                            Không có sản phẩm
+                            {{else}}
+                            {{#each this.sortPrice}}
+                            <div class="product-item">
+                            <div class="pi-pic">
+                                <img src="/imgs/sp/{{ID}}/main_thumb.jpg" alt="">
+                                <div class="icon">
+                                    
+                                </div>
+                                <ul>
+                                    <li class="w-icon active"><a href="#"><i class="icon_bag_alt"></i></a></li>
+                                    <li class="quick-view"><a href="categories/detail/{{ID}}">+ Quick View</a></li>
+                                    <li class="w-icon"><a href="#"><i class="fa fa-random"></i></a></li>
+                                </ul>
+                            </div>
+                            <div class="pi-text">
+                                <div class="catagory-name"></div>
+                                <a href="/categories/detail/{{ID}}">
+                                   <h5><b>{{NAME}}</b></h5>
+                                </a>
+                                 <div class="pi-text">
+                                            
+                                            <h6 class="product-price">Giá: {{format PRICE}}</h6>
+                                        </div>
+                                         <div >
+                                            
+                                           <h6>Người đang giữ giá: <i><b>{{BIDDER}}</b></i></h6> 
+                                        </div>
+                                         <div class="product-price">
+                                            
+                                            <h6>Số lượt ra giá: <i><b>{{TURN_AUCTION}}</b></i></h6>
+                                        </div>
+                                          <h6>Ngày hết hạn: {{formatDate DAYEND}}</h6>
+                                          <h6 class="product-price">{{DESCRIPTION}}</h6>
+                            </div>
+                        </div>
+                            {{/each}}
+                        {{/if}}
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Women Banner Section End -->
+     <!-- Man Banner Section Begin -->
+    <section class="man-banner spad">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-8">
+                   
+                    <div class="product-slider owl-carousel">
+                       
+                                {{#if this.empty}}
+                        Không có sản phẩm
+                            {{else}}
+                            {{#each this.sortTurn}}
+                        <div class="product-item">
+                            <div class="pi-pic">
+                                <img src="/imgs/sp/{{ID}}/main_thumb.jpg" alt="">
+                             
+                                <div class="icon">
+                                    
+                                       
+                                    
+                                </div>
+                                <ul>
+                                    <li class="w-icon active"><a href="#"><i class="icon_bag_alt"></i></a></li>
+                                    <li class="quick-view"><a href="/categories/detail/{{ID}}">+ Quick View</a></li>
+                                    <li class="w-icon"><a href="#"><i class="fa fa-random"></i></a></li>
+                                </ul>
+                            </div>
+                            <div class="pi-text">
+                                <div class="catagory-name"></div>
+                                <a href="/categories/detail/{{ID}}">
+                                    <h5><b>{{NAME}}</b></h5>
+                                </a>
+                                 <div class="pi-text">
+                                            
+                                            <span class="product-price">Giá: {{format PRICE}}</span>
+                                        </div>
+                                         <div >
+                                            
+                                           <h6>Người đang giữ giá: <i><b>{{BIDDER}}</b></i></h6> 
+                                        </div>
+                                         <div class="product-price">
+                                            
+                                            <h6>Số lượt ra giá: <i><b>{{TURN_AUCTION}}</b></i></h6>
+                                        </div>
+                                          <h6>Ngày hết hạn: {{formatDate DAYEND}}</h6>
+                                          <h6 class="product-price">{{DESCRIPTION}}</h6>
+                            </div>
+                        </div>
+                        {{/each}}
+                        {{/if}}
+                   
+                    </div>
+                </div>
+                <div class="col-lg-3 offset-lg-1">
+                    <div class="product-large set-bg m-large" data-setbg="https://image.freepik.com/foto-gratis/auriculares-disco-mesa_23-2147670594.jpg">
+                        <h2>#5</h2>
+                        <a href="#">Lượt ra giá cao nhất</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Man Banner Section End -->
+
+    <!-- Deal Of The Week Section End -->
+
+   
+
+  

@@ -1,0 +1,145 @@
+
+    {{#section 'css'}}
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.0.3/css/fileinput.min.css" media="all"
+    rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="../../css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="../../css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="../../css/themify-icons.css" type="text/css">
+    <link rel="stylesheet" href="../../css/elegant-icons.css" type="text/css">
+    <link rel="stylesheet" href="../../css/owl.carousel.min.css" type="text/css">
+    <link rel="stylesheet" href="../../css/nice-select.css" type="text/css">
+    <link rel="stylesheet" href="../../css/jquery-ui.min.css" type="text/css">
+    <link rel="stylesheet" href="../../css/slicknav.min.css" type="text/css">
+    <link rel="stylesheet" href="../../css/style.css" type="text/css">
+{{/section}}
+{{#section 'js'}}
+	<script src="../../js/jquery-3.3.1.min.js"></script>
+    <script src="../../js/bootstrap.min.js"></script>
+    <script src="../../js/jquery-ui.min.js"></script>
+    <script src="../../js/jquery.countdown.min.js"></script>
+    <script src="../../js/jquery.nice-select.min.js"></script>
+    <script src="../../s/jquery.zoom.min.js"></script>
+    <script src="../../js/jquery.dd.min.js"></script>
+    <script src="../../js/jquery.slicknav.js"></script>
+    <script src="../../js/owl.carousel.min.js"></script>
+    <script src="../../js/main.js"></script>
+    <script>
+      function assign1(){
+          var temp = document.getElementById('temp');
+          temp.value = "1";
+      }
+        function assign2(){
+          var temp = document.getElementById('temp');
+          temp.value = "2";
+      }
+      function assignPrice(){
+          var temp = document.getElementById('price');
+          var temp1 = document.getElementById('temp1');
+          var temp2 = document.getElementById('temp2');
+          var temp3 = document.getElementById('aucCost');
+          temp.value = parseInt(temp1.value)+ parseInt(temp2.value)* parseInt(temp3.value);
+      }
+    </script>
+{{/section}}
+    <!-- Register Section Begin -->
+    <div class="register-login-section spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 offset-lg-3">
+                    <div class="login-form">
+                        <h2>Đấu giá</h2>
+                        {{#if err_message}}
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          {{err_message}}
+        </div>
+        {{/if}}
+        {{#if this.still}}
+             {{#if this.valid}}
+                
+                 <form action="#" method="POST">
+                            <div class="group-input">
+                                            <input type="text" class="form-control" id="temp" name="temp"  value="0" style="display: none;"
+                                           readonly>
+                                             <input type="text" class="form-control" id="temp1" name="temp1"  value="{{this.PriceAndStep.PRICE}}" style="display: none;"
+                                           readonly>
+                                             <input type="text" class="form-control" id="temp2" name="temp2"  value="{{this.PriceAndStep.BUOCGIA}}" style="display: none;"
+                                           readonly>
+                                           <input type="text" class="form-control" id="temp3" name="temp3" value="{{this.PriceAndStep.total}}" style="display: none;"
+                                           readonly>
+                                           <input type="text" class="form-control" id="temp4" name="temp4" value="{{this.PriceAndStep.TURN_AUCTION}}" style="display: none;"
+                                           readonly>
+                                <label for="minCost">Giá hiện tại tối thiểu</label>
+                                <input style="background-color: skyblue;" type="text" id="minCost" name="minCost" value="{{format this.PriceAndStep.total}}" readonly>
+                            </div>
+                           
+                            <div class="group-input">
+                                <label for="aucCost">Nếu không, bạn muốn gấp bước giá lên bao nhiêu lần (Nhập vào số nguyên)</label>
+                                
+                                    <input type="aucCost" id="aucCost" name="aucCost">
+
+                            </div>
+                            <div>
+                                 <div class="col-lg-6 offset-lg-4">
+                            <div class="proceed-checkout">
+                                <ul style="list-style-type: none;">
+                                   <li class="cart-total"><button type="button" class="site-btn login-btn" onclick="assignPrice()">Chọn</button></li>
+                                    <li class="cart-total">Gía:<input type="text" class="form-control" id='price' 
+                                           readonly> </li>
+                                </ul>
+                               
+                            </div>
+                        </div>
+                            </div>
+ <div class="group-input">
+                                <button type="button" data-toggle="modal" data-target="#exampleModalCenter" class="site-btn login-btn" >Đặt giá</button>
+                                <!-- Button trigger modal -->
+
+                                <!-- Modal -->
+                                <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                    <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalCenterTitle">Bạn có chắc chắn muốn ra giá không?</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    
+                                    <div class="modal-footer">
+                                        <button type="submit" class="btn btn-primary" onclick="assign1()">Ra giá nhỏ nhất mặc định</button>
+                                        <button type="submit" class="btn btn-primary" onclick="assign2()" >Ra giá theo số lần bước giá nhập vào</button>
+                                    </div>
+                                    </div>
+                                </div>
+                                </div>
+                            </div>
+                   <br>        
+                        </form>
+
+                {{else}}
+                <div>
+                    Bạn không đủ điều kiện đấu giá.
+                </div>
+                      
+                {{/if}}
+        {{else}}
+                <div>
+                    Sản phẩm đã kết thúc đấu giá. Quay lại để xem kết quả.
+                </div>
+        {{/if}}
+               
+                     
+                      
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Register Form Section End -->
+
+   

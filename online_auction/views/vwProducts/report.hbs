@@ -1,0 +1,64 @@
+   {{#section 'css'}}
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.0.3/css/fileinput.min.css" media="all"
+    rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="../../../css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="../../../css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="../../../css/themify-icons.css" type="text/css">
+    <link rel="stylesheet" href="../../../css/elegant-icons.css" type="text/css">
+    <link rel="stylesheet" href="../../../css/owl.carousel.min.css" type="text/css">
+    <link rel="stylesheet" href="../../../css/nice-select.css" type="text/css">
+    <link rel="stylesheet" href="../../../css/jquery-ui.min.css" type="text/css">
+    <link rel="stylesheet" href="../../../css/slicknav.min.css" type="text/css">
+    <link rel="stylesheet" href="../../../css/style.css" type="text/css">
+{{/section}}
+{{#section 'js'}}
+	<script src="../../../js/jquery-3.3.1.min.js"></script>
+    <script src="../../../js/bootstrap.min.js"></script>
+    <script src="../../../js/jquery-ui.min.js"></script>
+    <script src="../../../js/jquery.countdown.min.js"></script>
+    <script src="../../../js/jquery.nice-select.min.js"></script>
+    <script src="../../../js/jquery.zoom.min.js"></script>
+    <script src="../../../js/jquery.dd.min.js"></script>
+    <script src="../../../js/jquery.slicknav.js"></script>
+    <script src="../../../js/owl.carousel.min.js"></script>
+    <script src="../../../js/main.js"></script>
+{{/section}}
+   <div class="ml-5">
+                                     <div class="customer-review-option">
+                                        <h4>Nhận xét của mọi người</h4>
+                                        <div class="comment-option">
+                                            {{#if this.empty}}
+                                                Không có nhận xét nào
+                                            {{else}}
+                                                {{#each this.reportlist}}
+                                                <div class="co-item">
+                                                <div class="avatar-pic">
+                                                    <img src="/img/user.png" alt="">
+                                                </div>
+                                                <div class="avatar-text">
+                                                    <h5>{{USERNAME}} <span>{{formatDate DATE}}</span></h5>
+                                                    <div class="at-reply">{{CONTENT}}</div>
+                                                </div>
+                                            </div>
+                                                {{/each}}
+                                            {{/if}}
+                                            
+                                        </div>   
+                                        <div class="leave-comment">
+                                            <h4>Leave A Comment</h4>
+                                            <form action="#"  method="POST">
+                                                <div class="row">
+                                                   
+                                                    <div class="col-lg-9 mb-3">
+                                                        <textarea placeholder="Messages" id="cmt" name="cmt" class="col-lg-12"></textarea>
+                                                        
+                                                    </div>
+                                                    
+                                                </div>
+                                                <button  type="submit" class="site-btn mb-3">Send message</button>
+                                            </form>
+                                        </div> 
+                                    </div>
+                                </div>

@@ -1,0 +1,436 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Fashi Template">
+    <meta name="keywords" content="Fashi, unica, creative, html">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Online Auction</title>
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css?family=Muli:300,400,500,600,700,800,900&display=swap" rel="stylesheet">
+
+    <!-- Css Styles -->
+    <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="css/themify-icons.css" type="text/css">
+    <link rel="stylesheet" href="css/elegant-icons.css" type="text/css">
+    <link rel="stylesheet" href="css/owl.carousel.min.css" type="text/css">
+    <link rel="stylesheet" href="css/nice-select.css" type="text/css">
+    <link rel="stylesheet" href="css/jquery-ui.min.css" type="text/css">
+    <link rel="stylesheet" href="css/slicknav.min.css" type="text/css">
+    <link rel="stylesheet" href="css/style.css" type="text/css">
+    <script src='https://www.google.com/recaptcha/api.js'></script>
+    {{{_sections.css}}}
+</head>
+<body >
+  <!-- Page Preloder -->
+    <div id="preloder">
+        <div class="loader"></div>
+    </div>
+
+    <!-- Header Section Begin -->
+    <header class="header-section">
+        <div class="header-top">
+            <div class="container">
+                <div class="ht-left">
+                    <div class="mail-service">
+                        <i class=" fa fa-envelope"></i>
+                        huynhphuc211.thcs@gmail.com
+                    </div>
+                    <div class="phone-service">
+                        <i class=" fa fa-phone"></i>
+                        +84 33 516 0976
+                    </div>
+                </div>
+                <form action="/account/logout" method="POST" id="frmLogout">
+                    <div class="ht-right">
+                    {{#if isAuthenticated}}
+                   
+                     <a href="javascript: $('#frmLogout').submit();" class="login-panel ml-3"><i></i>Đăng xuất</a>
+                         <a href="/account/profile" class="login-panel"><i class="fa fa-user"></i>Hi <strong>{{authUser.FULLNAME}}</strong></a>
+                    {{else}}
+                    <a href="/account/login" class="login-panel"><i class="fa fa-user"></i>Login</a>
+                    {{/if}}
+                    
+                    <div class="top-social">
+                        <a href="https://www.facebook.com/huynhphuc.le.39"><i class="ti-facebook"></i></a>
+                        
+                        <a href="https://www.instagram.com/arusz_phucphuc/"><i class="social_instagram"></i></a>
+                      
+                    </div>
+                </div>
+                </form>
+                
+            </div>
+        </div>
+        
+          {{#if isAdmin}}
+          <br>
+           <div class="nav-item">
+            <div class="container">
+                <nav class="nav-menu mobile-menu">
+                    <ul>
+                        <li class="active"><a href="/admin/home">Home</a></li>
+                         <li><a href="/admin/acceptAccount">ACCEPT ACCOUNT {{this.totalRequire.total}}</a></li>
+                       
+                     <li><a href="/admin/user">USER MANAGEMENT</a></li>
+                      <li><a href="/admin/categories">CATEGORIES MANAGEMENT</a></li>
+                     
+                  
+                    </ul>
+                </nav>
+                <div id="mobile-menu-wrap"></div>
+            </div>
+        </div>
+        {{else}}
+        <div class="container">
+            <div class="inner-header">
+                <div class="row">
+                    <div class="col-lg-2 col-md-2">
+                        <div class="logo">
+                            <a href="/">
+                                <img src="/img/logo.png" alt="">
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-lg-7 col-md-7">
+                        <div class="advanced-search">
+                            <form  method="GET" novalidate >
+                            <button type="button" class="category-btn">All Categories</button>
+                            <div class="input-group">
+                               
+                                <input type="text" placeholder="Search name's product" class="mt-2"
+                                id="keyword" name="keyword">
+                                
+                                <button type="submit" formaction='/search'><i class="ti-search"></i></button>
+                            </div>
+                            </form>
+                            
+                        </div>
+                    </div>
+                    {{#if isAuthenticated}}
+                        {{#if isAdmin}}
+                        {{else}}
+                            {{#if isSeller}}
+                        <div class="col-lg-3 text-right col-md-3">
+                        <ul class="nav-right">
+                            <li class="cart-icon">
+                                <a href="/sellingproduct">
+                                    <i class="icon_gift_alt"></i>
+                                   
+                                </a>
+                            </li>
+                            <li class="cart-icon">
+                                <a href="/boughtproduct">
+                                 <i class="icon_check_alt"></i>
+                                   
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                            {{else}}
+                              <div class="col-lg-3 text-right col-md-3">
+                        <ul class="nav-right">
+                            <li class="cart-icon">
+                                <a href="/watchlist">
+                                    <i class="icon_heart_alt"></i>
+                                   
+                                </a>
+                                 <div class="cart-hover">
+                                    <div class="select-items">
+                                        <table>
+                                            <tbody>
+                                                {{#if this.emptyLove}}
+                                                <div class="card-body">
+				                            <p class="card-text">
+					                            Không có sản phẩm nào
+				                            </p>
+			                            </div>
+                                                {{else}}
+                                                {{#each this.loveProduct}}
+                                                    <tr>
+                                                    <td class="si-pic"><img src="/imgs/sp/{{ID}}/main_thumb.jpg" alt=""></td>
+                                                    <td class="si-text">
+                                                        <div class="product-selected">
+                                                            <p>{{format PRICE}}</p>
+                                                            <h6>{{NAME}}</h6>
+                                                        </div>
+                                                    </td>
+                                                  
+                                                </tr>
+                                                {{/each}}
+                                                {{/if}}
+                                                
+                                            
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                  
+                                </div>
+                            </li>
+                            <li class="cart-icon">
+                                <a href="/auctionlist">
+                                 <i class="icon_bag_alt"></i>
+                                   
+                                    
+                                </a>
+                                 <div class="cart-hover">
+                                    <div class="select-items">
+                                        <table>
+                                            <tbody>
+                                                {{#if this.emptyAuction}}
+                                                 <div class="card-body">
+				                            <p class="card-text">
+					                            Không có sản phẩm nào
+				                            </p>
+			                            </div>
+                                                {{else}}
+                                                {{#each this.auctionProduct}}
+                                                    <tr>
+                                                    <td class="si-pic"><img src="/imgs/sp/{{ID}}/main_thumb.jpg" alt=""></td>
+                                                    <td class="si-text">
+                                                        <div class="product-selected">
+                                                            <p>{{format PRICE}}</p>
+                                                            <h6>{{NAME}}</h6>
+                                                        </div>
+                                                    </td>
+                                                  
+                                                </tr>
+                                                {{/each}}
+                                                {{/if}}
+                                                
+                                            
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                  
+                                </div>
+                            </li>
+                           <li class="cart-icon">
+                                <a href="/wonlist">
+                                    <i class="icon_check"></i>
+                                    
+                                </a>
+                                  <div class="cart-hover">
+                                    <div class="select-items">
+                                        <table>
+                                            <tbody>
+                                                {{#if this.emptyWon}}
+                                                 <div class="card-body">
+				                            <p class="card-text">
+					                            Không có sản phẩm nào
+				                            </p>
+			                            </div>
+                                                {{else}}
+                                                {{#each this.wonProduct}}
+                                                    <tr>
+                                                    <td class="si-pic"><img src="/imgs/sp/{{ID}}/main_thumb.jpg" alt=""></td>
+                                                    <td class="si-text">
+                                                        <div class="product-selected">
+                                                            <p>{{format PRICE}}</p>
+                                                            <h6>{{NAME}}</h6>
+                                                        </div>
+                                                    </td>
+                                                  
+                                                </tr>
+                                                {{/each}}
+                                                {{/if}}
+                                                
+                                            
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                  
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                            {{/if}}
+                       
+                    {{/if}}
+                    {{/if}} 
+                </div>
+            </div>
+        </div>
+         <div class="nav-item">
+            <div class="container">
+                <div class="nav-depart">
+                    <div class="depart-btn">
+                        <i class="ti-menu"></i>
+                        <span>All categories</span>
+                        <ul class="depart-hover">
+                            {{#if this.emptyCat}}
+                                 <li>Không có danh mục nào</li>
+                            {{else}}
+                                {{#each this.categories}}
+                                    <li><a href="/categories/{{ID}}">{{CAT_NAME}}</a></li>
+                                {{/each}}
+                            {{/if}}
+                            
+                        </ul>
+                    </div>
+                </div>
+                <nav class="nav-menu mobile-menu">
+                    <ul>
+                        <li ><a href="/">Home</a></li>
+                        {{#if isAuthenticated}}
+                        {{#if isAdmin}}
+                        {{/if}}
+                        {{#if isSeller}}
+                        <li><a href="/uploadProduct">UPLOAD PRODUCT</a></li o>
+                        {{else}}
+                        {{#if isAdmin}}
+                         <li><a href="/admin/acceptAccount">ACCEPT ACCOUNT {{this.totalRequire.total}}</a></li>
+                        {{else}}
+                     <li><a href="/updateAccount">UPDATE ACCOUNT</a></li>
+                     {{/if}}
+                     {{/if}}
+                        {{/if}}
+                             
+                        <li><a href="/about">ABOUT US</a></li>
+                        <li><a href="/faq">FAQ</a>
+                        </li>
+                  
+                    </ul>
+                </nav>
+                <div id="mobile-menu-wrap"></div>
+            </div>
+        </div>
+        {{/if}}
+       
+    </header>
+    <!-- Header End -->
+    {{{body}}}
+     <!-- Partner Logo Section Begin -->
+    <div class="partner-logo">
+        <div class="container">
+            <div class="logo-carousel owl-carousel">
+                <div class="logo-item">
+                    <div class="tablecell-inner">
+                        <img src="/img/logo-carousel/logo-1.png" alt="">
+                    </div>
+                </div>
+                <div class="logo-item">
+                    <div class="tablecell-inner">
+                        <img src="/img/logo-carousel/logo-2.png" alt="">
+                    </div>
+                </div>
+                <div class="logo-item">
+                    <div class="tablecell-inner">
+                        <img src="/img/logo-carousel/logo-3.png" alt="">
+                    </div>
+                </div>
+                <div class="logo-item">
+                    <div class="tablecell-inner">
+                        <img src="/img/logo-carousel/logo-4.png" alt="">
+                    </div>
+                </div>
+                <div class="logo-item">
+                    <div class="tablecell-inner">
+                        <img src="/img/logo-carousel/logo-5.png" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Partner Logo Section End -->
+    {{#if isAdmin}}
+    {{else}}
+      <!-- Footer Section Begin -->
+    <footer class="footer-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3">
+                    <div class="footer-left">
+                        <div class="footer-logo">
+                            <a href="#"><img src="img/footer-logo.png" alt=""></a>
+                        </div>
+                        <ul>
+                            <li>Address: 60-49 Road 11378 New York</li>
+                            <li>Phone: +65 11.188.888</li>
+                            <li>Email: hello.colorlib@gmail.com</li>
+                        </ul>
+                        <div class="footer-social">
+                            <a href="#"><i class="fa fa-facebook"></i></a>
+                            <a href="#"><i class="fa fa-instagram"></i></a>
+                            <a href="#"><i class="fa fa-twitter"></i></a>
+                            <a href="#"><i class="fa fa-pinterest"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-2 offset-lg-1">
+                    <div class="footer-widget">
+                        <h5>Information</h5>
+                        <ul>
+                            <li><a href="#">About Us</a></li>
+                            <li><a href="#">Checkout</a></li>
+                            <li><a href="#">Contact</a></li>
+                            <li><a href="#">Serivius</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-2">
+                    <div class="footer-widget">
+                        <h5>My Account</h5>
+                        <ul>
+                            <li><a href="#">My Account</a></li>
+                            <li><a href="#">Contact</a></li>
+                            <li><a href="#">Shopping Cart</a></li>
+                            <li><a href="#">Shop</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="newslatter-item">
+                        <h5>Join Our Newsletter Now</h5>
+                        <p>Get E-mail updates about our latest shop and special offers.</p>
+                        <form action="#" class="subscribe-form">
+                            <input type="text" placeholder="Enter Your Mail">
+                            <button type="button">Subscribe</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="copyright-reserved">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="copyright-text">
+                            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                        </div>
+                        <div class="payment-pic">
+                            <img src="img/payment-method.png" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    {{/if}}
+  
+    <!-- Footer Section End -->
+ <!-- Js Plugins -->
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/jquery-ui.min.js"></script>
+    <script src="js/jquery.countdown.min.js"></script>
+    <script src="js/jquery.nice-select.min.js"></script>
+    <script src="js/jquery.zoom.min.js"></script>
+    <script src="js/jquery.dd.min.js"></script>
+    <script src="js/jquery.slicknav.js"></script>
+    <script src="js/owl.carousel.min.js"></script>
+    <script src="js/main.js"></script>
+
+  
+   
+  {{{_sections.js}}}
+ {{{_sections.js}}}
+</body>
+</html>

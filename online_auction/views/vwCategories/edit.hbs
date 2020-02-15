@@ -1,0 +1,31 @@
+
+
+ <form method="POST" novalidate>
+       <div class="form-group" style="width: 1150px; margin: 0 auto" >
+        
+    <input type="text" class="form-control" id="txtId" name="txtId"  style="display: none;" 
+    value="{{this.categories.ID}}" readonly>
+          
+      <br>
+      <label for="txtName">Tên sản phẩm</label>
+      <input type="text" class="form-control" id="txtName" name="txtName" autofocus  value="{{this.categories.NAME}}" >
+      <br>
+
+          <label for="txtPrice">Giá</label>
+          <input type="text" class="form-control" id="txtPrice" name="txtPrice"  value="{{this.categories.PRICE}}"
+          autofocus>
+           <br>
+           <label for="txtBuocGia">Bước giá (Nhập số, tối thiểu là 100.000VNĐ)</label>
+           <input type="text" class="form-control" id="txtBuocGia" name="txtBuocGia"  value="{{this.categories.BUOCGIA}}"
+          autofocus>
+           <br>
+      </div>
+      <button type="submit" class="btn btn-outline-success ml-5 mb-2"  formaction="/admin/home/patch">
+        <i class="fa fa-check" aria-hidden="true"></i>
+        Save
+      </button>
+      <button type="submit" class="btn btn-outline-danger ml-2 mb-2" formaction="/admin/home/del">
+        <i class="fa fa-check" aria-hidden="true"></i>
+        Delete
+      </button>
+    </form>

@@ -1,0 +1,102 @@
+ {{#section 'css'}}
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.0.3/css/fileinput.min.css" media="all"
+    rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="../../css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="../../css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="../../css/themify-icons.css" type="text/css">
+    <link rel="stylesheet" href="../../css/elegant-icons.css" type="text/css">
+    <link rel="stylesheet" href="../../css/owl.carousel.min.css" type="text/css">
+    <link rel="stylesheet" href="../../css/nice-select.css" type="text/css">
+    <link rel="stylesheet" href="../../css/jquery-ui.min.css" type="text/css">
+    <link rel="stylesheet" href="../../css/slicknav.min.css" type="text/css">
+    <link rel="stylesheet" href="../../css/style.css" type="text/css">
+{{/section}}
+{{#section 'js'}}
+	<script src="../../js/jquery-3.3.1.min.js"></script>
+    <script src="../../js/bootstrap.min.js"></script>
+    <script src="../../js/jquery-ui.min.js"></script>
+    <script src="../../js/jquery.countdown.min.js"></script>
+    <script src="../../js/jquery.nice-select.min.js"></script>
+    <script src="../../s/jquery.zoom.min.js"></script>
+    <script src="../../js/jquery.dd.min.js"></script>
+    <script src="../../js/jquery.slicknav.js"></script>
+    <script src="../../js/owl.carousel.min.js"></script>
+    <script src="../../js/main.js"></script>
+{{/section}}
+    <!-- Register Section Begin -->
+    <div class="register-login-section spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 offset-lg-3">
+                    <div class="login-form">
+                        <h2>INFORMATION</h2>
+                        {{#if err_message}}
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          {{err_message}}
+        </div>
+        {{/if}}
+                        <form action="#" method="POST" novalidate>
+                           <input type="text" class="form-control" id="txtId" name="txtId"  style="display: none;" 
+    value="{{this.info.ID}}" readonly>
+                            <div class="group-input">
+                                <label for="username">Username</label>
+                                <input type="text" id="username" name="username" value="{{this.info.USERNAME}}">
+                            </div>
+                            
+                            <div class="group-input">
+                                <label for="pass">Full Name</label>
+                                <input type="text" id="name" name="name" value="{{this.info.FULLNAME}}">
+                            </div>
+                             <div class="group-input">
+                                <label for="pass">Email</label>
+                                <input type="text" id="email" name="email" value="{{this.info.EMAIL}}">
+                            </div>
+                             <div class="group-input">
+                                <label for="pass">Date Of Birth</label>
+                                <input type="text" id="dob" name="dob" value="{{formatDate this.info.DOB}}">
+                            </div>
+                            {{#if isAuthenticated}}
+                                    {{#if isAdmin}}
+
+                                    {{else}}
+                                         <div class="group-input">
+                                <label for="pass">Điểm cộng</label>
+                                <input type="text"  value="{{this.info.POINT_PLUS}}" style="background-color: grey"  readonly>
+                            </div>
+                        <div class="group-input">
+                                <label for="pass">Điểm trừ</label>
+                                <input type="text" value="{{this.info.POINT_SUBSTRACT}}" style="background-color: grey" readonly>
+                            </div>
+                                    {{/if}}
+                            {{/if}}
+                            
+                            <button type="submit" class="site-btn login-btn" formaction="patch">Update information</button>
+                        </form>
+                        <div class="switch-login">
+                            <a href="/account/password" class="or-login">Change password</a>
+                        </div>
+                        {{#if isAuthenticated}}
+                                    {{#if isAdmin}}
+
+                                    {{else}}
+                        <div class="switch-login">
+                            <a href="/account/report" class="or-login">My report</a>
+                        </div>
+                        {{/if}}
+                        {{/if}}
+                            
+                        
+                            
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Register Form Section End -->
+
+   

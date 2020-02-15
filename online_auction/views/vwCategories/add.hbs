@@ -1,0 +1,76 @@
+{{#section 'css'}}
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.0.3/css/fileinput.min.css" media="all"
+    rel="stylesheet" type="text/css" />
+{{/section}}
+
+{{#section 'js'}}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.0.3/js/fileinput.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.0.3/themes/fa/theme.min.js"></script>
+<script>
+    $('#file').fileinput({
+        theme: 'fa',
+        dropZoneEnabled: false,
+        showUpload: false,
+        showRemove: false,
+        validateInitialCount: true,
+        overwriteInitial: false,
+        allowedFileExtensions: ['png', 'jpg', 'gif'],
+    });
+</script>
+<script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin">
+</script>
+  <script>tinymce.init({
+      selector:'#txtDes', 
+      height: 500,
+      plugins: 'paste image link autolink lists table media',
+      menubar: false,
+      toolbar: ['undo redo | bold italic underline strikethrough',
+                ' forecolor backcolor',
+                'table link image media '],
+      });
+     
+</script>
+{{/section}}
+
+ <form method="POST" novalidate enctype="multipart/form-data">
+       <div class="form-group" style="width: 1150px; margin: 0 auto" >
+          {{#each this.idMax}}
+          <input type="text" class="form-control" id="txtId" name="txtId" value= {{max}} style="display: none;"  >
+          {{/each}}
+      <br>
+      <label for="txtName">Tên sản phẩm</label>
+     
+      <input type="text" class="form-control" id="txtName" name="txtName" autofocus>
+      <br>
+          
+            <label for="idCat" >Loại sản phẩm</label>
+            
+            <select class="ml-3"  id="idCat" name="idCat">
+                {{#each this.categories}}
+                     <option value={{ID}}>{{CAT_NAME}}</option>
+                {{/each}}
+                </select>
+         <br>
+          <br>
+          <label for="txtPrice">Giá</label>
+          <input type="text" class="form-control" id="txtPrice" name="txtPrice" 
+          autofocus>
+           <br>
+           <label for="txtBuocGia">Bước giá (Nhập số, tối thiểu là 100.000VNĐ)</label>
+           <input type="text" class="form-control" id="txtBuocGia" name="txtBuocGia" 
+          autofocus>
+           <br>
+           <label for="file">Chọn hình ảnh của sản phẩm (4 ảnh)</label>
+      <input type="file" id="file" name="file" multiple>
+           <br>
+           <label for="txtDes">Mô tả</label>
+          <textarea id="txtDes" name="txtDes"></textarea>
+          <br>
+          
+      </div>
+       
+      <button type="submit" class="btn btn-outline-success ml-5 mb-2"  >
+        <i class="fa fa-check" aria-hidden="true"></i>
+        Save
+      </button>
+    </form>

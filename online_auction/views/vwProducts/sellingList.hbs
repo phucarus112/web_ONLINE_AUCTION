@@ -1,0 +1,77 @@
+
+  {{#section 'css'}}
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.0.3/css/fileinput.min.css" media="all"
+    rel="stylesheet" type="text/css" />
+	<link rel="stylesheet" href="../../css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="../../css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="../../css/themify-icons.css" type="text/css">
+    <link rel="stylesheet" href="../../css/elegant-icons.css" type="text/css">
+    <link rel="stylesheet" href="../../css/owl.carousel.min.css" type="text/css">
+    <link rel="stylesheet" href="../../css/nice-select.css" type="text/css">
+    <link rel="stylesheet" href="../../css/jquery-ui.min.css" type="text/css">
+    <link rel="stylesheet" href="../../css/slicknav.min.css" type="text/css">
+    <link rel="stylesheet" href="../../css/style.css" type="text/css">
+{{/section}}
+{{#section 'js'}}
+	<script src="../../js/jquery-3.3.1.min.js"></script>
+    <script src="../../js/bootstrap.min.js"></script>
+    <script src="../../js/jquery-ui.min.js"></script>
+    <script src="../../js/jquery.countdown.min.js"></script>
+    <script src="../../js/jquery.nice-select.min.js"></script>
+    <script src="../../js/jquery.zoom.min.js"></script>
+    <script src="../../js/jquery.dd.min.js"></script>
+    <script src="../../js/jquery.slicknav.js"></script>
+    <script src="../../js/owl.carousel.min.js"></script>
+    <script src="../../js/main.js"></script>
+   
+{{/section}}
+    <!-- Shopping Cart Section Begin -->
+    <section class="shopping-cart spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="cart-table">
+                        
+                                
+                                    {{#if this.empty}}
+                                        <div class="card-body">
+				                            <p class="card-text">
+					                           Không có sản phẩm nào
+				                            </p>
+			                            </div>
+                                    {{else}}
+                                    <table>
+                            <thead>
+                                <div class="card-body">
+				                            <p class="card-text">
+					                           Các sản phẩm đăng bán (còn thời hạn):
+				                            </p>
+			                            </div>
+                                <tr>
+                                    <th>Image</th>
+                                    <th class="p-name">Product Name</th>
+                                    <th>Current Price</th>
+                                    <th>Turn Auction</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                        {{#each this.selling}}
+                                        <tr>
+                                <td class="cart-pic first-row"><a href="/categories/detail/{{ID}}"><img src="/imgs/sp/{{ID}}/main_thumb.jpg" alt=""></a></td>
+                                    <td class="cart-title first-row ">
+                                        <h5>{{NAME}}</h5>
+                                    </td>
+                                    <td class="p-price first-row">{{format PRICE}}</td>
+                                    <td class="total-price first-row">{{TURN_AUCTION}}</td>
+                                        </tr>   
+                                        {{/each}}
+                                    {{/if}}
+                            </tbody>
+                        </table>
+                    </div>
+                
+                </div>
+            </div>
+        </div>
+    </section>
+ 
